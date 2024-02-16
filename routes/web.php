@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Kelas;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
@@ -27,13 +28,24 @@ Route::get('/', [StudentsController::class, 'home']);
 Route::get('home', [StudentsController::class, 'home']);
 Route::get('about', [StudentsController::class, 'about']);
 
-Route::get('login', [LoginController::class, 'index']);
-Route::get('register', [RegisterController::class, 'index']);
-Route::get('register', [RegisterController::class, 'store']);
+
+Route::group(["prefix"=>"/login"], function(){
+    Route::get('/index', [AuthController::class, 'showLoginForm']);
+    Route::post('/index', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+})->middleware('guest');
+
+
+Route::group(["prefix"=>"/register"], function(){
+    Route::get('/index', [AuthController::class, 'showRegisterForm'])->name('register.index');
+    Route::post('/index', [AuthController::class, 'register']);
+})->middleware('guest');
+
+
 
 
 Route::group(["prefix" => "/student"], function(){
-    Route::get('/all', [StudentsController::class, 'index']);
+    Route::get('/all', [StudentsController::class, 'index'])->name('all');
     Route::get('/detail/{student}', [StudentsController::class, 'show']);
     Route::get('/create', [StudentsController::class, 'create']);
     Route::post('/add', [StudentsController::class, 'store']);

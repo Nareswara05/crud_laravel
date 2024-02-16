@@ -15,7 +15,7 @@
       <div class="card border-0 shadow-lg rounded-3 animate__animated animate__fadeIn">
         <div class="card-body p-4">
           <h2 class="text-center mb-4">Register</h2>
-          <form method="POST" action="/register">
+          <form method="POST" action="/register/index">
             @csrf <!-- Token CSRF -->
             <div class="mb-3">
               <label for="name" class="form-label visually-hidden">Name</label>
