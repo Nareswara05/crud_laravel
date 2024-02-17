@@ -10,41 +10,46 @@ use Illuminate\Support\Facades\Session;
 
 class StudentsController extends Controller
 {
-    public function index(){
-        return view('student.all', [
-            'student' => Student::all()
-        ]);
+    public function index()
+    {
+        $students = Student::with('kelas')->get();
+        return view('student.all', compact('students'));
     }
 
-    public function show($id){
-        return view('student.detail',[
+    public function show($id)
+    {
+        return view('student.detail', [
             'student' => Student::find($id)
         ]);
     }
 
 
-    public function home(){
+    public function home()
+    {
         return view('home', [
             'satu' => 'halo selamat datang ini adalah homepage',
             'dua' => 'saya sedang belajar laravel'
         ]);
     }
 
-    public function about(){
+    public function about()
+    {
         return view('about', [
-        'name' => 'Nareswara',
-        'class' => '11 pplg 2',
+            'name' => 'Nareswara',
+            'class' => '11 pplg 2',
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('student.create', [
             "kelas" => Kelas::all()
         ]);
-        
+
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validatedData = $request->validate([
             'nis' => 'required',
             'name' => 'required',
@@ -56,15 +61,17 @@ class StudentsController extends Controller
         return redirect('student/all')->with('success', 'data berhasil ditambahkan');
     }
 
-    
-    public function edit(Student $student){
-        return view('student.edit',[
+
+    public function edit(Student $student)
+    {
+        return view('student.edit', [
             'student' => $student,
             'kelas' => Kelas::all()
         ]);
     }
 
-    public function update(Request $request, Student $student) {
+    public function update(Request $request, Student $student)
+    {
         $request->validate([
             'nis' => 'required',
             'name' => 'required',
@@ -78,13 +85,14 @@ class StudentsController extends Controller
             'nis' => $request->nis,
             'kelas_id' => $request->kelas_id,
             'birthdate' => $request->birthdate,
-            'address' => $request->address, 
+            'address' => $request->address,
         ]);
         Session::flash('success', 'Data berhasil diubah');
         return redirect('/student/all');
     }
 
-    public function destroy(Student $student){
+    public function destroy(Student $student)
+    {
         Student::destroy($student->id);
 
         return redirect('/student/all');
