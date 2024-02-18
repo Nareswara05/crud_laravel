@@ -31,7 +31,7 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block rounded-pill animate__animated animate__fadeInUp">Register</button>
           </form>
-          <p class="text-center mt-3">Sudah Punya Akun? <a href="/login">Login Sekarang</a></p>
+          <p class="text-center mt-3">Sudah Punya Akun? <a href="/login/index">Login Sekarang</a></p>
         </div>
       </div>
     </div>

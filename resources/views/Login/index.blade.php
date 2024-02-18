@@ -40,7 +40,7 @@
                               Login
                           </button>
                         </form>
-                        <p class="text-center mt-3">Belum Punya Akun? <a href="/register">Daftar Sekarang</a></p>
+                        <p class="text-center mt-3">Belum Punya Akun? <a href="/register/index">Daftar Sekarang</a></p>
                     </div>
                 </div>
             </div>
