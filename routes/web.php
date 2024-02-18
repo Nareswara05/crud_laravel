@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Kelas;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
@@ -27,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [StudentsController::class, 'home']);
 Route::get('home', [StudentsController::class, 'home']);
 Route::get('about', [StudentsController::class, 'about']);
+Route::get('student', [HomepageController::class, 'student']);
+Route::get('kelas', [HomepageController::class, 'kelas']);
 
 
 Route::group(["prefix"=>"/login"], function(){
