@@ -44,7 +44,7 @@ Route::group(["prefix"=>"/register"], function(){
 
 
 
-Route::group(["prefix" => "/student"], function(){
+Route::group(['middleware' => 'checkLogin', 'prefix' => '/student'], function () {
     Route::get('/all', [StudentsController::class, 'index'])->name('all');
     Route::get('/detail/{student}', [StudentsController::class, 'show']);
     Route::get('/create', [StudentsController::class, 'create']);
@@ -54,7 +54,7 @@ Route::group(["prefix" => "/student"], function(){
     Route::delete('/delete/{student}', [StudentsController::class, 'destroy']);
 });
 
-Route::group(["prefix" => "/kelas"], function(){
+Route::group(['middleware' => 'checkLogin', 'prefix' => '/kelas'], function () {
     Route::get('/all', [KelasController::class, 'index']);
     Route::get('/create', [KelasController::class, 'create']);
     Route::post('/add', [KelasController::class, 'store']);
