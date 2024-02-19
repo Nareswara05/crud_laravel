@@ -1,7 +1,7 @@
-@extends('layout.main')
+@extends('layout.app')
 
 @section('container')
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered ml-5">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Kelas</th>
@@ -32,7 +32,7 @@
         </tbody>
     </table>
 
-    <a href="/kelas/create" class="btn btn-primary">
+    <a href="/kelas/create" class="btn btn-primary ml-5">
         <ion-icon name="add-outline"></ion-icon> Create Class
     </a>
 @endsection

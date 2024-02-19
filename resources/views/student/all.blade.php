@@ -1,7 +1,7 @@
-@extends('layout.main')
+@extends('layout.app')
 
 @section('container')
-    <table class="table table-striped table-bordered">
+    <table class="ml-5 table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Nis</th>
@@ -44,7 +44,7 @@
         </tbody>
     </table>
 
-    <a href="/student/create" class="btn btn-primary">
+    <a href="/student/create" class="btn btn-primary ml-5">
         <ion-icon name="add-outline"></ion-icon> Create Student
     </a>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
