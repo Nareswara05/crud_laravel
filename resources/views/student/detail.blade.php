@@ -6,7 +6,7 @@
 <p>NIS : {{ $student->nis }}</p>
 <p>Name : {{ $student->name }}</p>
 <p>Birthdate : {{ $student->birthdate }}</p>
-<p>Class : {{ $student->class }}</p>
+<p>Class : {{ $student->kelas ? $student->kelas->nama_kelas : 'N/A' }}</p>
 <p>Address : {{ $student->address }}</p>
 
 

@@ -10,15 +10,34 @@ use Illuminate\Support\Facades\Session;
 
 class StudentsController extends Controller
 {
-    public function index()
-    {
-        $students = Student::with('kelas')->get();
-        return view('student.all', compact('students'));
+    public function index(Request $request)
+{
+    $query = Student::with('kelas');
+
+    // Filter by class if provided in the request
+    if ($request->has('kelas_id')) {
+        $query->whereHas('kelas', function ($q) use ($request) {
+            $q->where('id', $request->kelas_id);
+        });
     }
 
+    // Search by name if provided in the request
+    if ($request->has('search')) {
+        $query->where('name', 'like', '%' . $request->search . '%');
+    }
+
+    $students = $query->paginate(6);
+
+    return view('student.all', [
+        'students' => $students,
+        'kelasOptions' => Kelas::all(), // Pass all classes for the filter dropdown
+        'selectedKelas' => $request->kelas_id, // Keep track of the selected class
+    ]);
+}
+
+
     public function show($id)
-    {
-        return view('student.detail', [
+    {       return view('student.detail', [
             'student' => Student::find($id)
         ]);
     }
