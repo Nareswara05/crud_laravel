@@ -39,6 +39,50 @@
 
     <button type="submit"  class="btn btn-primary">Submit</button>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const studentForm = document.getElementById('studentForm');
+
+        studentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Check if NIS already exists using AJAX
+            const nisInput = document.getElementById('nis');
+            const nisValue = nisInput.value;
+
+            // AJAX request to check if NIS already exists
+            axios.get(`/check-nis/${nisValue}`)
+                .then(response => {
+                    if (response.data.exists) {
+                        // If NIS already exists, show SweetAlert error
+                        Swal.fire({
+                            title: 'NIS Already Exists!',
+                            text: 'Please enter a unique NIS.',
+                            icon: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        // If NIS doesn't exist, proceed with form submission
+                        Swal.fire({
+                            title: 'Data berhasil ditambah!',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                studentForm.submit();
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    });
+</script>
 @endsection
     
 

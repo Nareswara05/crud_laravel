@@ -93,7 +93,6 @@
                             </li>
                         </ul>
             <div class="list-group list-group-flush">
-                <a href="" class="list-group-item list-group-item-action bg-light">Dashboard</a>
                 <a href="/student/all" class="list-group-item list-group-item-action bg-light">Murid</a>
                 <a href="/kelas/all" class="list-group-item list-group-item-action bg-light">Kelas</a>
             </div>

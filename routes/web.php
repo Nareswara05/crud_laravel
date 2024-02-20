@@ -45,6 +45,7 @@ Route::group(["prefix"=>"/register"], function(){
 })->middleware('guest');
 
 
+Route::get('/check-nis/{nis}', 'StudentsController@checkNis');
 
 
 Route::group(['middleware' => 'checkLogin', 'prefix' => '/student'], function () {

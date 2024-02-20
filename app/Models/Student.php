@@ -16,4 +16,9 @@ class Student extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['search']) ? $filters['search'] : false){
+          return  $query->where('name', 'like', '%' . request('search') . '%');
+        }
+    }
 }
