@@ -42,6 +42,9 @@
                                     <button type="button" onclick="confirmLogout()" class="dropdown-item">Logout</button>
                                 </form>
                             </li>
+                            <li>
+                                <a class="dropdown-item" href="/student/all">Dashboard</a>
+                            </li>
                         </ul>
                     </li>
                 @endguest

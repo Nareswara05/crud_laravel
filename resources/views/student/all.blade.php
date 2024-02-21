@@ -61,7 +61,7 @@
                     <td>{{ $student->address }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="/student/details/{{ $student->id }}" class="btn btn-info btn-sm">
+                            <a href="/student/detail/{{ $student->id }}" class="btn btn-info btn-sm">
                                 <ion-icon name="eye-outline"></ion-icon> Detail
                             </a>
                             <a href="/student/edit/{{ $student->id }}" class="btn btn-warning btn-sm">
