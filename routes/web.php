@@ -33,19 +33,18 @@ Route::get('kelas', [HomepageController::class, 'kelas']);
 
 
 Route::group(["prefix"=>"/login"], function(){
-    Route::get('/index', [AuthController::class, 'showLoginForm']);
-    Route::post('/index', [AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-})->middleware('guest');
+    Route::get('/index', [AuthController::class, 'showLoginForm'])->middleware('guest');
+    Route::post('/index', [AuthController::class, 'login'])->name('login')->middleware('guest');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('guest');
+});
 
 
 Route::group(["prefix"=>"/register"], function(){
-    Route::get('/index', [AuthController::class, 'showRegisterForm'])->name('register.index');
-    Route::post('/index', [AuthController::class, 'register']);
-})->middleware('guest');
+    Route::get('/index', [AuthController::class, 'showRegisterForm'])->name('register.index')->middleware('guest');
+    Route::post('/index', [AuthController::class, 'register'])->middleware('guest');
+});
 
 
-Route::get('/check-nis/{nis}', 'StudentsController@checkNis');
 
 
 Route::group(['middleware' => 'checkLogin', 'prefix' => '/student'], function () {

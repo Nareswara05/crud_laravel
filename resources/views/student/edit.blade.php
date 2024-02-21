@@ -1,5 +1,5 @@
 
-@extends('layout.main')
+@extends('layout.app')
 
 @section('container')
 <a href="/student/all"><button><ion-icon name="arrow-back-outline"></ion-icon></button></a><br><br>
